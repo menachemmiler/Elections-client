@@ -23,7 +23,7 @@ export const fetchLogin = createAsyncThunk(
         },
         body: JSON.stringify(user),
       });
-      console.log({ res });
+      // console.log({ res });
       if (res.status != 200) {
         return thunkApi.rejectWithValue("Can't login, please try again");
       }
@@ -105,6 +105,9 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
+    updateUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<userState>) => {
     builder
@@ -114,11 +117,11 @@ const userSlice = createSlice({
         state.user = null;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
-        console.log({ action });
+        // console.log({ action });
         state.status = DataStatus.SUCCESS;
         state.error = null;
         state.user = action.payload as unknown as IUser;
-        console.log(state.user);
+        // console.log(state.user);
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.status = DataStatus.FAILED;
@@ -129,7 +132,7 @@ const userSlice = createSlice({
         state.status = DataStatus.SUCCESS;
         state.error = null;
         state.user = action.payload as unknown as IUser;
-        console.log(state.user);
+        // console.log(state.user);
       });
 
     // .addCase(fetchRegister.pending, (state, action) => {
@@ -151,5 +154,7 @@ const userSlice = createSlice({
     // });
   },
 });
+
+export const { updateUser } = userSlice.actions;
 
 export default userSlice;

@@ -5,12 +5,19 @@ import {
 } from "@reduxjs/toolkit";
 import { DataStatus, candidatesState } from "../../types/redux";
 import { ICandidate } from "../../types/candidates";
+import { useEffect } from "react";
+import { socket } from "../../main";
+import { useAppDispatch } from "../store";
 
 const initialState: candidatesState = {
   error: null,
   status: DataStatus.IDLE,
   candidates: [],
 };
+
+
+
+
 
 export const fetchCandidates = createAsyncThunk(
   "candidates/getList",
@@ -35,7 +42,11 @@ export const fetchCandidates = createAsyncThunk(
 const candidatesSlice = createSlice({
   name: "candidates",
   initialState,
-  reducers: {},
+  reducers: {
+    updateCandidates: (state, action) => {
+      state.candidates = action.payload;
+    },
+  },
   extraReducers: (builder: ActionReducerMapBuilder<candidatesState>) => {
     builder
       .addCase(fetchCandidates.pending, (state) => {
@@ -55,5 +66,7 @@ const candidatesSlice = createSlice({
       });
   },
 });
+
+export const { updateCandidates } = candidatesSlice.actions;
 
 export default candidatesSlice;

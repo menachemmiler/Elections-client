@@ -1,7 +1,7 @@
-import { getProfile } from "../../redux/slices/userSlice";
+import { socket } from "../../main";
+import { updateUser } from "../../redux/slices/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { ICandidate } from "../../types/candidates";
-import { fetchCandidates } from "../../redux/slices/candidatesSlice";
 
 interface props {
   candidate: ICandidate;
@@ -10,8 +10,6 @@ interface props {
 export default function VoteCard({ candidate }: props) {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-
-
 
   const handleVote = async () => {
     if (!user) return;
@@ -26,8 +24,18 @@ export default function VoteCard({ candidate }: props) {
         },
         body: JSON.stringify({ candidateId: candidate._id, userId: user._id }),
       });
-      console.log({ res });
-      dispatch(getProfile());
+      if (!res.ok) throw new Error(`${(res as any).message}`);
+      socket.emit(
+        "newVote",
+        localStorage.getItem("Authorization")!,
+        (response: { status: string; user: any; message: any }) => {
+          if (response.status === "success") {
+            dispatch(updateUser(response.user));
+          } else {
+            console.error("Error:", response.message);
+          }
+        }
+      );
     } catch (err: any) {
       console.log(err.message);
     }
