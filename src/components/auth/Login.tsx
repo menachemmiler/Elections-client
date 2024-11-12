@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { fetchLogin } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+// import { io } from "../../../../server/src/app.ts"; // ייבוא ה-io מהשרת
+// import { io } from "socket.io-client"; // ייבוא Socket.IO ללקוח
+
+
+// const socket = io("http://localhost:3000"); // התחברות לשרת
+
 
 export default function Login() {
   const dispatch = useAppDispatch();
@@ -11,10 +17,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (!user?._id) return 
+    if (!user?._id) {
+      // io.emit("connection");
+      return;
+    }
     navigate("/votes");
   }, [user]);
-
 
   return (
     <div>
