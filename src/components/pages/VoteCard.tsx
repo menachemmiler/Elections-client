@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getProfile } from "../../redux/slices/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { ICandidate } from "../../types/candidates";
