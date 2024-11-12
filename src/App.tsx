@@ -5,6 +5,9 @@ import Register from "./components/auth/Register";
 import Votes from "./components/pages/Votes";
 import Statistics from "./components/pages/Statistics";
 
+
+
+
 export default function App() {
   return (
     <div>

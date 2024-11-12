@@ -7,11 +7,11 @@ interface props {
   candidate: ICandidate;
 }
 
-export default function VoteCard({
-  candidate
-}: props) {
+export default function VoteCard({ candidate }: props) {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+
+
 
   const handleVote = async () => {
     if (!user) return;
@@ -27,7 +27,6 @@ export default function VoteCard({
         body: JSON.stringify({ candidateId: candidate._id, userId: user._id }),
       });
       console.log({ res });
-      dispatch(fetchCandidates());
       dispatch(getProfile());
     } catch (err: any) {
       console.log(err.message);
@@ -35,7 +34,7 @@ export default function VoteCard({
   };
 
   return (
-    <div className={`vote-card ${user?.votedFor == candidate._id}`} >
+    <div className={`vote-card ${user?.votedFor == candidate._id}`}>
       <h1>{candidate.name}</h1>
       <button onClick={handleVote}>VOTE</button>
       <img src={`${candidate.image}`} alt={`${candidate.name} img`} />
