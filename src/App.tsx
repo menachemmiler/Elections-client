@@ -19,7 +19,6 @@ export default function App() {
 
     useEffect(() => {
     socket.on("updateCandidate", (newCandidate) => {
-      // console.log("New candidate list received:", newCandidate);
       dispatch(updateCandidates(newCandidate)); 
     });
   }, []);
