@@ -6,17 +6,18 @@ export default function Nav() {
   const user = useAppSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  
+
   const handleLogout = () => {
     dispatch(userSlice.actions.logout());
     localStorage.removeItem("Authorization");
-    navigate('/login')
+    navigate("/login");
   };
 
   return (
     <div className="nav">
       {user.user ? (
         <>
+          <NavLink to={"/setting"}>setting</NavLink>
           <NavLink to={"/votes"}>Votes</NavLink>
           {user.user.isAdmin && (
             <NavLink to={"/statistics"}>Statistics</NavLink>

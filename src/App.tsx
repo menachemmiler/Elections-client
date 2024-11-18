@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { socket } from "./main";
 import { useAppDispatch } from "./redux/store";
 import { updateCandidates } from "./redux/slices/candidatesSlice";
+import SettingsPage from "./components/pages/SettingsPage";
 
 
 
@@ -30,11 +31,11 @@ export default function App() {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="setting" element={<SettingsPage/>} />
         <Route path="votes" element={<Votes />} />
         <Route path="statistics" element={<Statistics />} />
         <Route path="/" element={<Navigate to={"/login"} />} />
       </Routes>
-     
     </div>
   );
 }
