@@ -117,11 +117,9 @@ const userSlice = createSlice({
         state.user = null;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
-        // console.log({ action });
         state.status = DataStatus.SUCCESS;
         state.error = null;
         state.user = action.payload as unknown as IUser;
-        // console.log(state.user);
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.status = DataStatus.FAILED;
@@ -132,26 +130,7 @@ const userSlice = createSlice({
         state.status = DataStatus.SUCCESS;
         state.error = null;
         state.user = action.payload as unknown as IUser;
-        // console.log(state.user);
       });
-
-    // .addCase(fetchRegister.pending, (state, action) => {
-    //   state.status = DataStatus.LOADING;
-    //   state.error = null;
-    //   state.user = null;
-    // })
-    // .addCase(fetchRegister.fulfilled, (state, action) => {
-    //   console.log({ action });
-    //   state.status = DataStatus.SUCCESS;
-    //   state.error = null;
-    //   state.user = action.payload as unknown as IUser;
-    //   console.log(state.user);
-    // })
-    // .addCase(fetchRegister.rejected, (state, action) => {
-    //   state.status = DataStatus.FAILED;
-    //   state.error = action.error as string;
-    //   state.user = null;
-    // });
   },
 });
 

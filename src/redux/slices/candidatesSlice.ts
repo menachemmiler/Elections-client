@@ -5,9 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { DataStatus, candidatesState } from "../../types/redux";
 import { ICandidate } from "../../types/candidates";
-import { useEffect } from "react";
-import { socket } from "../../main";
-import { useAppDispatch } from "../store";
 
 const initialState: candidatesState = {
   error: null,
