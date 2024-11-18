@@ -17,7 +17,7 @@ import { updateCandidates } from "./redux/slices/candidatesSlice";
 export default function App() {
   const dispatch = useAppDispatch();
 
-    useEffect(() => {
+    useEffect(() => { 
     socket.on("updateCandidate", (newCandidate) => {
       dispatch(updateCandidates(newCandidate)); 
     });
