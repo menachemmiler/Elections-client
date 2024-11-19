@@ -22,7 +22,7 @@ export default function Nav() {
           {user.user.isAdmin && (
             <NavLink to={"/statistics"}>Statistics</NavLink>
           )}
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} >Logout</button>
         </>
       ) : (
         <>
