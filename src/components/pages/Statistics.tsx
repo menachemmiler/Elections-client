@@ -19,7 +19,7 @@ export default function Statistics() {
 
 
   return (
-    <div className={`vote-list`}>
+    <div className={`statistics`}>
       {candidates.length &&
         candidates.map((candidate: ICandidate) => (
           <div key={candidate._id}>
