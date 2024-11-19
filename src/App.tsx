@@ -24,14 +24,14 @@ export default function App() {
   return (
     <div className={`${theme}`}>
       <Nav />
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="setting" element={<SettingsPage />} />
-        <Route path="votes" element={<Votes />} />
-        <Route path="statistics" element={<Statistics />} />
-        <Route path="/" element={<Navigate to={"/login"} />} />
-      </Routes>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="setting" element={<SettingsPage />} />
+          <Route path="votes" element={<Votes />} />
+          <Route path="statistics" element={<Statistics />} />
+          <Route path="/" element={<Navigate to={"/login"} />} />
+        </Routes>
     </div>
   );
 }

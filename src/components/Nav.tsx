@@ -26,8 +26,10 @@ export default function Nav() {
         </>
       ) : (
         <>
-          <NavLink to={"/login"}>Login</NavLink>
-          <NavLink to={"/register"}>Register</NavLink>
+          <NavLink to={"/login"} data-testid="login">
+            Login
+          </NavLink>
+          <NavLink to={"/register"} data-testid="Register">Register</NavLink>
         </>
       )}
     </div>
